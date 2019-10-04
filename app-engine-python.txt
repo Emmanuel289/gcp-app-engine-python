@@ -1,0 +1,19 @@
+#Launch GCP and configure your project
+gcloud auth list  #ensure that your account is authentic and your project is set to your $PROJECT_ID
+gcloud config list #show metadata =including thr name of the user account, project etc
+gcloud config set project <PROJECT_ID> # if for some reason the project is not set, simply issue this command and
+#retrieve the project ID from the console
+gcloud config set compute/zone <ZONE> # set the default ZONE for your project
+gcloud config set compute/region <REGION> #set the default REGION for your project
+
+ #Create a simple request handler
+ mkdir helloworld && cd helloworld  #create a new folder in your $HOME directory for the application
+ #using your favorite editor, create a helloworld.py script that acts as a simple request handler. The Pyhton script responds to a request with an
+ #HTTP header that describes the content and the message Hello, World!
+
+ #Next, create a configuration file called app.yaml. The config file will describe which handler scripts should be used
+ #for which urls. It will also specify the python runtime and version, the ability to handle simultaneous requests and
+ #requests whose path matches the regular expression /.* (all URLs) should be handled by the app object in the helloworld
+ #module.
+ $dev_appserver.py ./  #deploy a local instance of the app server to see that it works as expected
+ $gcloud app deploy app.yaml  #deploy the helloworld server to the production App Engine environment.
